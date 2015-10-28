@@ -152,4 +152,22 @@ public class MyView extends Observable implements View {
 			observer.update(cameFrom, arg);
 		}
 	}
+
+	@Override
+	public void enableSolve() {	}
+
+	@Override
+	public void setMazeName(String name) {}
+
+	@Override
+	public void displayMazeGUI(Maze3d maze3d) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSolution(Solution solution) {
+		// TODO Auto-generated method stub
+		
+	}
 }

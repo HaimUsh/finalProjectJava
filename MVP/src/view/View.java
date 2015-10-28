@@ -22,4 +22,12 @@ public interface View {
 	public void displayDirectory(String[] path);
 
 	public void displayMenu();
+
+	public void enableSolve();
+
+	public void setMazeName(String name);
+	
+	public void displayMazeGUI(Maze3d maze3d);
+
+	public void setSolution(Solution solution);
 }

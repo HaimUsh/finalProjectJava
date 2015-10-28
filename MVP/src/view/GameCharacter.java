@@ -8,7 +8,7 @@ import org.eclipse.swt.graphics.Image;
 
 import algorithms.mazeGenerators.Moves;
 
-public class GameCharacter {
+public class GameCharacter implements BasicCharacter {
 
 
 	int x, y;
@@ -35,30 +35,40 @@ public class GameCharacter {
 		
 
 	}
-	
-	public void paint(GC gc, int w, int h) {
 
-		switch (moves) {
-		case FORWARD:
-			gc.drawImage(charFront, 0, 0, charFront.getBounds().width, charFront.getBounds().height,
-					x - 3, y , w,h);
-			break;
-		case BACK:
-			gc.drawImage(charBack, 0, 0, charBack.getBounds().width, charBack.getBounds().height,
-					x - 3, y , w,h);
-			break;
-		case LEFT:
-			gc.drawImage(charLeft, 0, 0, charLeft.getBounds().width, charLeft.getBounds().height,
-					x - 3, y , w,h);
-		break;
-		case RIGHT:
-			gc.drawImage(charRight, 0, 0, charRight.getBounds().width, charRight.getBounds().height,
-					x - 3, y , w,h);
-		break;
+	@Override
+	public void moveChar(GC gc, int pointX, int pointZ, int width, int height) {
+			switch(moves){
+			
+			case FORWARD: 
+			
+				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+				break;
+			
+			case BACK: 
+			
+				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+				break;
+			
+			case LEFT: 
+			
+				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+				break;
+			
+			case RIGHT: 
+			
+				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+				break;
+			default:
+				break;
+			
+			}
 		
-		default:
-		break;
-		}
 	}
+	
 
+
+		
 }
+
+
