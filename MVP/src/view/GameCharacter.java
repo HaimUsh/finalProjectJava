@@ -13,7 +13,7 @@ public class GameCharacter {
 
 	int x, y;
 
-	Image charDown, charUp, charLeft, charRight;
+	Image charFront, charBack, charLeft, charRight;
 
 	Moves moves;
 
@@ -22,8 +22,8 @@ public class GameCharacter {
 		this.y=y;
 
 		try {
-			charDown= new Image(null, new FileInputStream(""));
-			charUp= new Image(null, new FileInputStream(""));
+			charFront= new Image(null, new FileInputStream("resources/front.png"));
+			charBack= new Image(null, new FileInputStream(""));
 			charLeft= new Image(null, new FileInputStream(""));
 			charRight= new Image(null, new FileInputStream(""));
 
@@ -40,11 +40,11 @@ public class GameCharacter {
 
 		switch (moves) {
 		case DOWN:
-			gc.drawImage(charDown, 0, 0, charDown.getBounds().width, charDown.getBounds().height,
+			gc.drawImage(charFront, 0, 0, charFront.getBounds().width, charFront.getBounds().height,
 					x - 3, y , w,h);
 			break;
 		case UP:
-			gc.drawImage(charUp, 0, 0, charUp.getBounds().width, charUp.getBounds().height,
+			gc.drawImage(charBack, 0, 0, charBack.getBounds().width, charBack.getBounds().height,
 					x - 3, y , w,h);
 			break;
 		case LEFT:
