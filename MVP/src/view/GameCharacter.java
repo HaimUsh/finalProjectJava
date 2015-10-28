@@ -23,9 +23,9 @@ public class GameCharacter {
 
 		try {
 			charFront= new Image(null, new FileInputStream("resources/front.png"));
-			charBack= new Image(null, new FileInputStream(""));
-			charLeft= new Image(null, new FileInputStream(""));
-			charRight= new Image(null, new FileInputStream(""));
+			charBack= new Image(null, new FileInputStream("resources/back.png"));
+			charLeft= new Image(null, new FileInputStream("resources/left.png"));
+			charRight= new Image(null, new FileInputStream("resources/right.png"));
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -39,11 +39,11 @@ public class GameCharacter {
 	public void paint(GC gc, int w, int h) {
 
 		switch (moves) {
-		case DOWN:
+		case FORWARD:
 			gc.drawImage(charFront, 0, 0, charFront.getBounds().width, charFront.getBounds().height,
 					x - 3, y , w,h);
 			break;
-		case UP:
+		case BACK:
 			gc.drawImage(charBack, 0, 0, charBack.getBounds().width, charBack.getBounds().height,
 					x - 3, y , w,h);
 			break;
