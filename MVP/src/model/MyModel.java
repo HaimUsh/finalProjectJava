@@ -61,7 +61,7 @@ public class MyModel extends Observable implements Model {
 		executer = Executors.newFixedThreadPool(numOfThreads);
 		try 
 		{
-			loadZip();
+			//loadZip();
 			changeAndNotify("loadZip", "Mazes has been loaded from file");
 		}
 		catch (Exception e) 

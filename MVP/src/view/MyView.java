@@ -153,8 +153,6 @@ public class MyView extends Observable implements View {
 		}
 	}
 
-	@Override
-	public void enableSolve() {	}
 
 	@Override
 	public void setMazeName(String name) {}

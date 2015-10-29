@@ -163,4 +163,21 @@ public class MazeBoard extends Canvas {
 			messageBox.setText("Error");
 			messageBox.open();
 		}
+
+/*		public static void main(String[] args) {
+
+			Maze3d maze;
+			
+			Maze3dGenerator dorGen = new MyMaze3DGenerator();
+			maze = dorGen.generate(10, 10, 10);
+			
+			SearchableMaze dorSearch = new SearchableMaze(maze);
+			Searcher mySearch = new BFS();
+			mySearch.search(dorSearch);
+			Shell shell = new Shell();
+			MazeBoard dialog = new MazeBoard(shell, 1);
+			dialog.setMaze(maze);
+		}*/
+
+		
 }

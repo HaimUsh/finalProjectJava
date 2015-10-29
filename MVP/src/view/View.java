@@ -23,8 +23,6 @@ public interface View {
 
 	public void displayMenu();
 
-	public void enableSolve();
-
 	public void setMazeName(String name);
 	
 	public void displayMazeGUI(Maze3d maze3d);
