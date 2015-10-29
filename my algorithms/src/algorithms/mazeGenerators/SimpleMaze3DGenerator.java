@@ -42,6 +42,7 @@ public class SimpleMaze3DGenerator extends CommonMaze3dGenerator {
 			for (int k = maze.getCurrentPosition().y; k <= maze.getGoalPosition().y ; k++) {
 				maze.setValue(maze.getCurrentPosition().x, maze.getCurrentPosition().z,k, 0);
 			}
+			maze.setCurrentPosition(maze.getStartPosition().getX(),maze.getStartPosition().getZ(), maze.getStartPosition().getY() );
 
 			return maze;
 		}

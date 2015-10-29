@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 import algorithms.mazeGenerators.Moves;
 import algorithms.mazeGenerators.Position;
 
+@SuppressWarnings("unused")
 public class MazeDisplay extends CommonMazeDisplay 
 {
 	GameCharacter troll = new GameCharacter(0, 0);
@@ -22,7 +23,7 @@ public class MazeDisplay extends CommonMazeDisplay
 		super(composite, style);
 		
 
-
+	
 		addPaintListener(new PaintListener()
 		{
 			@Override
@@ -34,14 +35,14 @@ public class MazeDisplay extends CommonMazeDisplay
 				int min=0;
 
 				if(getSize().y < getSize().x)
-					min=getSize().y+2;
+					min= getSize().y+2;
 				else 
 					min = getSize().x+2;
 
 				if(getMyMaze() != null)
 				{
 
-					int levelSelected = getMyMaze().getCurrentPosition().getZ();
+					int levelSelected = getMyMaze().getCurrentPosition().getY();
 
 					int cellSize = min / getMyMaze().getMaze3d().length;
 
@@ -57,7 +58,7 @@ public class MazeDisplay extends CommonMazeDisplay
 								startFromZ = z*cellSize;
 								e.gc.drawRectangle(startFromX, startFromZ, cellSize, cellSize);
 
-								if(getMyMaze().getValue(x, z, levelSelected)==0)
+								if(getMyMaze().getValue(x, z, levelSelected) ==0)
 								{
 									e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_WHITE));
 									e.gc.fillRectangle(startFromX, startFromZ, cellSize, cellSize);
@@ -72,7 +73,7 @@ public class MazeDisplay extends CommonMazeDisplay
 									if (levelSelected > 0)
 										if(getMyMaze().getValue(x, z, levelSelected-1)==0)
 										{
-											e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_GRAY));
+											e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_DARK_GRAY));
 											e.gc.fillRectangle(startFromX, startFromZ, cellSize, cellSize);
 										}
 										else{}
@@ -80,7 +81,7 @@ public class MazeDisplay extends CommonMazeDisplay
 									if ((levelSelected < getMyMaze().getLevels())&&(levelSelected > 0))
 										if((getMyMaze().getValue(x, z, levelSelected-1)==0)&&(getMyMaze().getValue(x, z, levelSelected+1)==0))
 										{
-											e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_GRAY));
+											e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_GREEN));
 											e.gc.fillRectangle(startFromX, startFromZ, cellSize, cellSize);
 										}
 										else{}
@@ -94,23 +95,29 @@ public class MazeDisplay extends CommonMazeDisplay
 							}
 						}
 					}
-					if((getMyMaze().getStartPosition().getZ()) == levelSelected)
+					if((getMyMaze().getStartPosition().getY()) == levelSelected)
 					{
-						e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_GREEN));
+						e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_BLUE));
 						e.gc.fillRectangle(getMyMaze().getStartPosition().getX()*cellSize, getMyMaze().getStartPosition().getZ()*cellSize, cellSize, cellSize);
+						
 					}
-					if ((getMyMaze().getCurrentPosition().getZ()) == levelSelected) 
+					if ((getMyMaze().getCurrentPosition().getY()) == levelSelected) 
 					{
-						troll.moveChar(e.gc, getMyMaze().getCurrentPosition().getX()*cellSize, getMyMaze().getCurrentPosition().getZ()*cellSize, cellSize, cellSize);
+//						troll.moveChar(e.gc, getMyMaze().getCurrentPosition().getX()*cellSize, getMyMaze().getCurrentPosition().getY()*cellSize, cellSize, cellSize);
+						e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_YELLOW));
+						e.gc.fillOval(getMyMaze().getCurrentPosition().getX()*cellSize, getMyMaze().getCurrentPosition().getZ()*cellSize, cellSize, cellSize);
+						
 					}
-					if ((getMyMaze().getGoalPosition().getZ()) == levelSelected) 
+					if ((getMyMaze().getGoalPosition().getY()) == levelSelected) 
 					{
-						finish.moveChar(e.gc, getMyMaze().getGoalPosition().getX()*cellSize, getMyMaze().getGoalPosition().getZ()*cellSize, cellSize, cellSize);
+						//finish.moveChar(e.gc, getMyMaze().getGoalPosition().getX()*cellSize, getMyMaze().getGoalPosition().getZ()*cellSize, cellSize, cellSize);
+						e.gc.setBackground(e.display.getSystemColor(SWT.COLOR_RED));
+						e.gc.fillRectangle(getMyMaze().getGoalPosition().getX()*cellSize, getMyMaze().getGoalPosition().getZ()*cellSize, cellSize, cellSize);
 					}
 
-					if (((getMyMaze().getCurrentPosition().getX()) == (getMyMaze().getGoalPosition().getX()))&&((getMyMaze().getCurrentPosition().getY()) == (getMyMaze().getGoalPosition().getY()))&&((getMyMaze().getCurrentPosition().getZ()) == (getMyMaze().getGoalPosition().getZ())))
+					if (((getMyMaze().getGoalPosition().getX()) == (getMyMaze().getGoalPosition().getX()))&&((getMyMaze().getCurrentPosition().getZ()) == (getMyMaze().getGoalPosition().getZ()))&&((getMyMaze().getCurrentPosition().getZ()) == (getMyMaze().getGoalPosition().getZ())))
 					{
-						win.moveChar(e.gc, 0, 0, ((getMyMaze().getRows())*cellSize), ((getMyMaze().getCols())*cellSize));
+						win.moveChar(e.gc, 0, 0, ((getMyMaze().getGoalPosition().getX())*cellSize), ((getMyMaze().getGoalPosition().getZ())*cellSize));
 					}
 
 					setBackground(e.display.getSystemColor(SWT.COLOR_WHITE));
@@ -122,11 +129,12 @@ public class MazeDisplay extends CommonMazeDisplay
 	@Override
 	public void moveUp()
 	{
-		myTempPosition = new Position(getMyMaze().getCurrentPosition());
-		flag = getMyMaze().isAvailable(Moves.UP	,myTempPosition);
+		//myTempPosition = new Position(getMyMaze().getCurrentPosition());
+		flag = getMyMaze().isAvailable(Moves.UP	,getMyMaze().getCurrentPosition());
+		
 		if (flag)
 		{
-			getMyMaze().movePosition(myTempPosition, Moves.UP);
+			getMyMaze().movePosition(getMyMaze().getCurrentPosition(), Moves.UP);
 			redraw();
 		}
 	}
@@ -134,11 +142,12 @@ public class MazeDisplay extends CommonMazeDisplay
 	@Override
 	public void moveDown()
 	{
-		myTempPosition = new Position(getMyMaze().getCurrentPosition());
-		flag = getMyMaze().isAvailable(Moves.DOWN, myTempPosition);
+		//myTempPosition = new Position(getMyMaze().getCurrentPosition());
+		flag = getMyMaze().isAvailable(Moves.DOWN, getMyMaze().getCurrentPosition());
+		
 		if (flag)
 		{
-			getMyMaze().movePosition(myTempPosition, Moves.DOWN);
+			getMyMaze().movePosition(getMyMaze().getCurrentPosition(), Moves.DOWN);
 			redraw();
 		}
 	}
@@ -146,11 +155,13 @@ public class MazeDisplay extends CommonMazeDisplay
 	@Override
 	public void moveLeft()
 	{
-		myTempPosition = new Position(getMyMaze().getCurrentPosition());
-		flag = getMyMaze().isAvailable(Moves.LEFT,myTempPosition);
+		//myTempPosition = new Position(getMyMaze().getCurrentPosition());
+		
+		flag = getMyMaze().isAvailable(Moves.LEFT,getMyMaze().getCurrentPosition());
+		
 		if (flag)
 		{
-			getMyMaze().movePosition(myTempPosition, Moves.LEFT);
+			getMyMaze().movePosition(getMyMaze().getCurrentPosition(), Moves.LEFT);
 			redraw();
 		}
 
@@ -159,11 +170,12 @@ public class MazeDisplay extends CommonMazeDisplay
 	@Override
 	public void moveRight()
 	{
-		myTempPosition = new Position(getMyMaze().getCurrentPosition());
-		flag = getMyMaze().isAvailable(Moves.RIGHT, myTempPosition);
+		//myTempPosition = new Position(getMyMaze().getCurrentPosition());
+		flag = getMyMaze().isAvailable(Moves.RIGHT, getMyMaze().getCurrentPosition());
+		
 		if (flag)
 		{
-			getMyMaze().movePosition(myTempPosition, Moves.RIGHT);
+			getMyMaze().movePosition(getMyMaze().getCurrentPosition(), Moves.RIGHT);
 			redraw();
 		}
 	}
@@ -171,11 +183,12 @@ public class MazeDisplay extends CommonMazeDisplay
 	@Override
 	public void moveForward() 
 	{
-		myTempPosition = new Position(getMyMaze().getCurrentPosition());
-		flag = getMyMaze().isAvailable(Moves.FORWARD, myTempPosition);
+		//myTempPosition = new Position(getMyMaze().getCurrentPosition());
+		flag = getMyMaze().isAvailable(Moves.FORWARD, getMyMaze().getCurrentPosition());
+		
 		if (flag)
 		{
-			getMyMaze().movePosition(myTempPosition, Moves.FORWARD);
+			getMyMaze().movePosition(getMyMaze().getCurrentPosition(), Moves.FORWARD);
 			redraw();
 		}
 
@@ -184,12 +197,12 @@ public class MazeDisplay extends CommonMazeDisplay
 	@Override
 	public void moveBack() 
 	{
-		myTempPosition = new Position(getMyMaze().getCurrentPosition());
-		flag = getMyMaze().isAvailable(Moves.BACK, myTempPosition);
+		//myTempPosition = new Position(getMyMaze().getCurrentPosition());
+		flag = getMyMaze().isAvailable(Moves.BACK, getMyMaze().getCurrentPosition());
+		
 		if (flag)
 		{
-			getMyMaze().movePosition(myTempPosition, Moves.BACK);
-
+			getMyMaze().movePosition(getMyMaze().getCurrentPosition(), Moves.BACK);
 			redraw();
 		}
 	}

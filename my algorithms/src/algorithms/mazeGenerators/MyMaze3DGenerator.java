@@ -99,6 +99,8 @@ public class MyMaze3DGenerator extends CommonMaze3dGenerator {
 			maze.setValue(currentX, currentZ, currentY, rand.nextInt(2));
 
 			initOpening(nextX, nextZ, nextY, maze);
+			
 		}
+		maze.setCurrentPosition(maze.getStartPosition().getX(),maze.getStartPosition().getZ(), maze.getStartPosition().getY() );
 	}
 }

@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-import model.Model;
-import model.MyModel;
-import view.MyView;
-import view.View;
 import controller.Command;
 import controller.CommandList;
 import controller.DirCommand;
@@ -19,6 +15,9 @@ import controller.Generate3DMazeCommand;
 import controller.LoadMazeCommand;
 import controller.MazeSizeCommand;
 import controller.SaveMazeCommand;
+import model.Model;
+import model.MyModel;
+import view.View;
 
 public class Presenter implements Observer {
 
@@ -41,7 +40,7 @@ public class Presenter implements Observer {
 			} 	break;
 			case "generated":
 			{
-				
+				ui.displayMazeGUI(model.getMazeList().get(model.getCommandData().get("generated")));
 			}	break;
 			case "crossed":
 			{
@@ -86,9 +85,9 @@ public class Presenter implements Observer {
 		}
 		else
 		{
-			if (o instanceof MyView)
+			if (o instanceof View)
 			{
-;
+
 				invokeCommand((String)arg);
 			}
 			else
@@ -153,10 +152,12 @@ public class Presenter implements Observer {
 				else
 					args += " " + sp[i];
 		}
-	
+		
+
 		Command cmd = selectCommand(commandName);
 		if (cmd != null)
 			cmd.doCommand(args,ui, model);
+		
 		else
 			ui.display("Command not found");
 			

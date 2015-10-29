@@ -30,7 +30,7 @@ public class Properties implements Serializable {
 		this.numOfThreads=10;
 		this.generateAlgo="my";
 		this.solveAlgo="bfs";
-		this.gameInterface="cli";
+		this.gameInterface="gui";
 	}
 
 

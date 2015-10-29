@@ -32,43 +32,54 @@ public class GameCharacter implements BasicCharacter {
 		}
 
 
-		
+
 
 	}
 
 	@Override
-	public void moveChar(GC gc, int pointX, int pointZ, int width, int height) {
-			switch(moves){
-			
-			case FORWARD: 
-			
-				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
-				break;
-			
-			case BACK: 
-			
-				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
-				break;
-			
-			case LEFT: 
-			
-				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
-				break;
-			
-			case RIGHT: 
-			
-				gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
-				break;
-			default:
-				break;
-			
-			}
+	public void moveChar(GC gc, int pointX, int pointZ, int width, int height) 
+	{
+
+		gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
 		
+
+
 	}
-	
 
 
-		
+
+	public void moveChar2(GC gc, int pointX, int pointZ, int width, int height) {
+		switch(moves){
+
+		case FORWARD: 
+
+			gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+			break;
+
+		case BACK: 
+
+			gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+			break;
+
+		case LEFT: 
+
+			gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+			break;
+
+		case RIGHT: 
+
+			gc.drawImage(charFront, 0, 0, 256, 256, pointX, pointZ, width, height);
+			break;
+		default:
+			break;
+
+		}
+
+	}
+
+
+
+
 }
 
 
